@@ -19,6 +19,9 @@ public class Grocery implements Serializable {
 	private long id;
 
 	@NotNull
+	private String name;
+
+	@NotNull
 	private long quantity;
 
 	@Column(nullable = false, updatable = false)
@@ -28,6 +31,14 @@ public class Grocery implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public long getQuantity() {

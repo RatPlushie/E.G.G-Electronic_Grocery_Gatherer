@@ -6,7 +6,76 @@
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.css}">
 </head>
 <body>
-    <h1>Hello world</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <h3 class="text-light text-bold">(EGG) Electronic Grocery Gatherer</h3>
+
+        <button class="btn btn-danger my-2 my-sm-0 ml-auto" type="submit">
+            <a>Clear ALL</a>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <!-- List col -->
+                <div class="col-9">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Item</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="grocery, stats : ${groceryList}">
+                                <!-- ID column -->
+                                <td th:text="${stats.index + 1}"></td>
+
+                                <!-- Item name column -->
+                                <td th:text="${grocery.getName()}"></td>
+
+                                <!-- Quantity column -->
+                                <td th:text="${grocery.getQuantity()}"></td>
+
+                                <!-- Created on column -->
+                                <td th:text="${grocery.getCreatedAt()}"></td>
+
+                                <!-- Action buttons -->
+                                <td>
+                                    <button type="button" class="btn btn-primary" disabled>Update</button>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- New item col -->
+                <div class="col-2 offset-1">
+                    <div class="card">
+                        <form class="p-2">
+                            <div class="form-group px-2">
+                                <label for="grocery_name">Item Name:</label>
+                                <input type="text" class="form-control" id="grocery_name">
+                            </div>
+
+                            <div class="form-group px-2">
+                                <label for="grocery_quantity">Item Quantity:</label>
+                                <input type="number" class="form-control" id="grocery_quantity">
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-block mx-auto">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Scripts -->
     <script th:src="@{webjars/jquery/jquery.js}"></script>
     <script th:src="@{webjars/popper.js/1.16.0/popper.js}"></script>
