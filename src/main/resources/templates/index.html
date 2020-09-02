@@ -9,9 +9,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <h3 class="text-light text-bold">(EGG) Electronic Grocery Gatherer</h3>
 
-        <button class="btn btn-danger my-2 my-sm-0 ml-auto" type="submit">
-            <a>Clear ALL</a>
-        </button>
+        <a th:href="@{/deleteALL}" class="my-2 my-sm-0 ml-auto">
+            <button class="btn btn-danger" type="submit">Delete ALL</button>
+        </a>
     </nav>
 
     <main>
@@ -46,8 +46,10 @@
 
                                 <!-- Action buttons -->
                                 <td>
-                                    <button type="button" class="btn btn-primary" disabled>Update</button>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <a th:href="@{/delete/{id} (id=${grocery.getId()})}">
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </a>
+
                                 </td>
                             </tr>
                         </tbody>
@@ -57,15 +59,15 @@
                 <!-- New item col -->
                 <div class="col-2 offset-1">
                     <div class="card">
-                        <form class="p-2">
+                        <form class="p-2" th:action="@{/create}" th:object="${newGrocery}" th:method="post">
                             <div class="form-group px-2">
                                 <label for="grocery_name">Item Name:</label>
-                                <input type="text" class="form-control" id="grocery_name">
+                                <input type="text" class="form-control" id="grocery_name" th:field="*{name}">
                             </div>
 
                             <div class="form-group px-2">
                                 <label for="grocery_quantity">Item Quantity:</label>
-                                <input type="number" class="form-control" id="grocery_quantity">
+                                <input type="number" class="form-control" id="grocery_quantity" th:field="*{quantity}">
                             </div>
 
                             <button type="submit" class="btn btn-success btn-block mx-auto">Submit</button>
